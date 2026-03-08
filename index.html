@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maryame Kouram — Data & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --bg:          #080E1C;
+  --navy:        #0D1526;
+  --navy-mid:    #111E35;
+  --cream:       #F7F2EB;
+  --cream-warm:  #EDE7DC;
+  --gold:        rgba(255,200,90,.88);
+  --gold-solid:  #FFC85A;
+  --text-dark:   #1A1208;
+  --muted:       #2C2416;
+  --muted-light: #5C5248;
+
+  /* chapter accents */
+  --story:    #19A05E;
+  --journey:  #3D52D5;
+  --work:     #C93C10;
+  --skills:   #008799;
+  --contact:  #B06000;
+  --fulbright:#B8860B;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Outfit', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+  --radius: 3px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold-solid); color: var(--text-dark); }
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-solid); border-radius: 2px; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(8,14,28,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,200,90,.12);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav-logo em {
+  font-style: italic;
+  color: var(--gold);
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.55);
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--navy);
+  padding: 8rem 4rem 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold-solid), transparent);
+  opacity: 0.3;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 300;
+  color: rgba(247,242,235,.65);
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: rgba(247,242,235,.7);
+  line-height: 1.8;
+  max-width: 38ch;
+  margin-bottom: 3rem;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(247,242,235,.18);
+  border-radius: 2px;
+  color: rgba(247,242,235,.55);
+  transition: all var(--transition);
+}
+.tag:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--gold-solid);
+  color: var(--text-dark);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+.btn-primary:hover {
+  background: #FFD070;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,200,90,.3);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(247,242,235,.25);
+  color: rgba(247,242,235,.75);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-right {
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8rem 3rem 5rem;
+  overflow: hidden;
+}
+
+/* Geometric background pattern */
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(61,82,213,.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,200,90,.05) 0%, transparent 50%);
+}
+
+.hero-photo-frame {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin-bottom: 3rem;
+}
+.hero-photo-frame::before {
+  content: '';
+  position: absolute;
+  top: -12px; left: -12px;
+  right: 12px; bottom: 12px;
+  border: 1px solid rgba(255,200,90,.2);
+  border-radius: 2px;
+  z-index: 0;
+}
+.hero-photo-frame::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  right: -12px; bottom: -12px;
+  border: 1px solid rgba(61,82,213,.2);
+  border-radius: 2px;
+  z-index: 0;
+}
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 1;
+  background: var(--navy-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, #182040 100%);
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid rgba(255,200,90,.08);
+}
+.photo-placeholder-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255,200,90,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+.photo-placeholder-text {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.3);
+  text-align: center;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(247,242,235,.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: 100%;
+  max-width: 380px;
+}
+.hero-stat {
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border-right: 1px solid rgba(247,242,235,.1);
+  position: relative;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.hero-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.4);
+}
+
+/* ============================================================
+   SECTION COMMON
+   ============================================================ */
+section { position: relative; }
+
+.section-header {
+  margin-bottom: 4rem;
+}
+.chapter-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.chapter-label::after {
+  content: '';
+  display: inline-block;
+  width: 3rem;
+  height: 1px;
+}
+.chapter-label.story  { color: var(--story);  }
+.chapter-label.story::after  { background: var(--story); }
+.chapter-label.journey { color: var(--journey); }
+.chapter-label.journey::after { background: var(--journey); }
+.chapter-label.work   { color: var(--work);   }
+.chapter-label.work::after   { background: var(--work); }
+.chapter-label.skills { color: var(--skills); }
+.chapter-label.skills::after { background: var(--skills); }
+.chapter-label.contact { color: var(--contact); }
+.chapter-label.contact::after { background: var(--contact); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* ============================================================
+   STORY SECTION
+   ============================================================ */
+#story {
+  background: var(--cream);
+  color: var(--text-dark);
+  padding: 7rem 0;
+}
+
+.story-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.story-chapter-label { color: var(--story); }
+.story-chapter-label::after { background: var(--story); }
+
+.story-text .section-title { color: var(--text-dark); }
+.story-text .section-title em { color: var(--story); }
+
+.story-body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+.story-body p + p { margin-top: 1.2rem; }
+
+.story-pull-quote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 3px solid var(--story);
+  background: rgba(25,160,94,.06);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.story-pull-quote p {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.story-photo-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+}
+.story-photo-frame {
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(135deg, #e8e2d8 0%, #d5cfc5 100%);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid rgba(44,36,22,.1);
+  position: relative;
+  overflow: hidden;
+}
+.story-photo-frame::before {
+  content: '';
+  position: absolute;
+  top: -2rem; right: -2rem;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(25,160,94,.06);
+}
+.story-photo-placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(44,36,22,.35);
+  text-align: center;
+}
+
+.story-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.story-fact {
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(44,36,22,.08);
+  transition: all var(--transition);
+}
+.story-fact:hover {
+  border-color: var(--story);
+  box-shadow: 0 4px 16px rgba(25,160,94,.08);
+}
+.story-fact-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(44,36,22,.4);
+  margin-bottom: 0.4rem;
+}
+.story-fact-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+/* Languages */
+.languages-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+.lang-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  background: white;
+  border: 1px solid rgba(44,36,22,.1);
+  border-radius: var(--radius);
+  gap: 0.2rem;
+  transition: all var(--transition);
+}
+.lang-badge:hover { border-color: var(--story); }
+.lang-name {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+.lang-level {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--story);
+}
+
+/* ============================================================
+   FULBRIGHT SECTION
+   ============================================================ */
+
+#fulbright {
+  background: #00205B;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Zellige moroccan tile pattern */
+
+
+
+.fulbright-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.fulbright-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.fulbright-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+.fulbright-logo-svg {
+  width: 180px;
+  height: auto;
+  flex-shrink: 0;
+}
+.fulbright-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255,200,90,.08);
+  border: 1px solid rgba(255,200,90,.25);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+}
+.fulbright-badge-icon { font-size: 1rem; }
+.fulbright-badge-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.fulbright-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+}
+.fulbright-heading em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.fulbright-desc {
+  font-size: 0.95rem;
+  color: rgba(247,242,235,.65);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.fulbright-personal {
+  background: rgba(255,200,90,.05);
+  border: 1px solid rgba(255,200,90,.15);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+}
+.fulbright-personal-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.fulbright-personal-stats {
+  display: flex;
+  gap: 2rem;
+}
+.fulbright-pstat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+.fulbright-pstat-label {
+  font-size: 0.8rem;
+  color: rgba(247,242,235,.55);
+  margin-top: 0.2rem;
+}
+
+.fulbright-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-content: start;
+}
+.fulbright-kpi {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,200,90,.1);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all var(--transition);
+}
+.fulbright-kpi:hover {
+  border-color: rgba(255,200,90,.3);
+  background: rgba(255,200,90,.05);
+}
+.fulbright-kpi-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.fulbright-kpi-label {
+  font-size: 0.82rem;
+  color: rgba(247,242,235,.55);
+  line-height: 1.4;
+}
+
+.fulbright-network {
+  border-top: 1px solid rgba(255,200,90,.1);
+  padding-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.fulbright-network-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.4);
+  white-space: nowrap;
+}
+.fulbright-network-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.country-chip {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(255,200,90,.12);
+  border-radius: 2px;
+  color: rgba(247,242,235,.4);
+  transition: all var(--transition);
+}
+.country-chip:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ============================================================
+   JOURNEY / EDUCATION SECTION
+   ============================================================ */
+#journey {
+  background: var(--cream);
+  color: var(--text-dark);
+  padding: 7rem 0;
+}
+.journey-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.journey-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+}
+.journey-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+}
+.journey-nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(44,36,22,.08);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.journey-nav-item:hover .journey-nav-title { color: var(--journey); }
+.journey-nav-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(44,36,22,.2);
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+.journey-nav-item.active .journey-nav-dot {
+  background: var(--journey);
+  border-color: var(--journey);
+  box-shadow: 0 0 0 3px rgba(61,82,213,.15);
+}
+.journey-nav-year {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: rgba(44,36,22,.4);
+  margin-bottom: 0.2rem;
+}
+.journey-nav-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  transition: color var(--transition);
+}
+
+.edu-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.edu-card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid rgba(44,36,22,.08);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--journey);
+}
+.edu-card:hover {
+  border-color: rgba(61,82,213,.2);
+  box-shadow: 0 8px 32px rgba(61,82,213,.06);
+  transform: translateY(-2px);
+}
+.edu-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.edu-institution {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.edu-period {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--journey);
+  background: rgba(61,82,213,.06);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.edu-degree {
+  font-size: 0.92rem;
+  color: var(--muted-light);
+  margin-bottom: 1rem;
+}
+.edu-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.edu-topics {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(44,36,22,.07);
+}
+.edu-topics-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(44,36,22,.38);
+  margin-bottom: 0.5rem;
+}
+.edu-topics-list {
+  font-size: 0.8rem;
+  color: var(--muted-light);
+  line-height: 1.7;
+}
+.resume-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: 1.8rem 2.5rem;
+  background: white;
+  border: 1px solid rgba(44,36,22,.1);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+}
+.resume-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.resume-cta-icon { font-size: 1.8rem; }
+.resume-cta-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.2rem;
+}
+.resume-cta-sub {
+  font-size: 0.82rem;
+  color: var(--muted-light);
+}
+.resume-cta .btn-primary {
+  background: var(--text-dark);
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.resume-cta .btn-primary:hover {
+  background: var(--muted);
+  box-shadow: 0 8px 24px rgba(26,18,8,.2);
+}
+.edu-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(61,82,213,.15);
+  border-radius: 2px;
+  color: var(--journey);
+}
+
+/* ============================================================
+   EXPERIENCE SECTION (part of journey)
+   ============================================================ */
+.exp-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.exp-card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid rgba(44,36,22,.08);
+  padding: 2rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.exp-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--work);
+}
+.exp-card:hover {
+  border-color: rgba(201,60,16,.2);
+  box-shadow: 0 4px 20px rgba(201,60,16,.05);
+}
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.exp-period {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--work);
+  background: rgba(201,60,16,.06);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.exp-company {
+  font-size: 0.85rem;
+  color: var(--muted-light);
+  margin-bottom: 1rem;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.exp-bullets li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--work);
+  font-size: 0.75rem;
+}
+
+/* ============================================================
+   WORK / PROJECTS SECTION
+   ============================================================ */
+#work {
+  background: var(--bg);
+  padding: 7rem 0;
+}
+.work-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.project-card {
+  background: var(--navy);
+  border: 1px solid rgba(247,242,235,.07);
+  border-radius: var(--radius);
+  padding: 2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(255,200,90,.03) 100%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.project-card:hover {
+  border-color: rgba(247,242,235,.18);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+.project-card:hover::after { opacity: 1; }
+
+.project-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+.project-type {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  font-weight: 400;
+}
+.type-genai     { background: rgba(25,160,94,.12); color: #19A05E; }
+.type-analytics { background: rgba(61,82,213,.12); color: #6B82F5; }
+.type-ml        { background: rgba(201,60,16,.12); color: #E05A30; }
+.type-math      { background: rgba(0,135,153,.12); color: #00AABB; }
+.type-vba       { background: rgba(176,96,0,.12);  color: #D4860A; }
+.type-fullstack { background: rgba(147,51,234,.12); color: #B57BF5; }
+.type-bio       { background: rgba(236,72,153,.12); color: #F472B6; }
+
+.project-arrow {
+  color: rgba(247,242,235,.3);
+  font-size: 1rem;
+  transition: all var(--transition);
+}
+.project-card:hover .project-arrow {
+  color: var(--gold);
+  transform: translate(2px,-2px);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+.project-subtitle {
+  font-size: 0.8rem;
+  color: rgba(247,242,235,.45);
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.07em;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(247,242,235,.1);
+  border-radius: 2px;
+  color: rgba(247,242,235,.45);
+}
+.project-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(247,242,235,.07);
+}
+.project-metric-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+}
+.project-metric-label {
+  font-size: 0.75rem;
+  color: rgba(247,242,235,.4);
+}
+
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+#skills {
+  background: var(--cream);
+  color: var(--text-dark);
+  padding: 7rem 0;
+}
+.skills-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.skill-category {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid rgba(44,36,22,.08);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+.skill-category:hover {
+  border-color: rgba(0,135,153,.2);
+  box-shadow: 0 4px 20px rgba(0,135,153,.05);
+}
+.skill-cat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.skill-cat-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 1.2rem;
+}
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-item {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0,135,153,.05);
+  border: 1px solid rgba(0,135,153,.12);
+  border-radius: 2px;
+  color: var(--muted);
+  transition: all var(--transition);
+}
+.skill-item:hover {
+  background: rgba(0,135,153,.1);
+  border-color: var(--skills);
+  color: var(--skills);
+}
+
+.certs-section { margin-top: 4rem; }
+.certs-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.cert-card {
+  background: white;
+  border: 1px solid rgba(44,36,22,.08);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  transition: all var(--transition);
+}
+.cert-card:hover { border-color: rgba(0,135,153,.2); }
+.cert-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--skills);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+#contact {
+  background: var(--navy);
+  padding: 7rem 0;
+}
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.contact-left .section-title { color: var(--cream); }
+.contact-left .section-title em { color: var(--gold); }
+.contact-desc {
+  font-size: 0.95rem;
+  color: rgba(247,242,235,.6);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+  max-width: 36ch;
+}
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: rgba(247,242,235,.04);
+  border: 1px solid rgba(247,242,235,.1);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+.contact-link:hover {
+  border-color: var(--gold);
+  background: rgba(255,200,90,.05);
+}
+.contact-link-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,200,90,.08);
+  border-radius: 2px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.contact-link-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.contact-link-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.35);
+}
+.contact-link-value {
+  font-size: 0.9rem;
+  color: rgba(247,242,235,.8);
+}
+.contact-right {
+  background: rgba(247,242,235,.03);
+  border: 1px solid rgba(247,242,235,.08);
+  border-radius: var(--radius);
+  padding: 3rem;
+}
+.contact-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+.avail-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #19A05E;
+  box-shadow: 0 0 0 3px rgba(25,160,94,.2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(25,160,94,.2); }
+  50% { box-shadow: 0 0 0 6px rgba(25,160,94,.05); }
+}
+.avail-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #19A05E;
+}
+.contact-form-note {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(247,242,235,.7);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+.contact-research {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.research-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.3);
+  margin-bottom: 0.4rem;
+}
+.research-item {
+  font-size: 0.85rem;
+  color: rgba(247,242,235,.6);
+  padding-left: 1rem;
+  position: relative;
+}
+.research-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--bg);
+  border-top: 1px solid rgba(247,242,235,.06);
+  padding: 2.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(247,242,235,.5);
+}
+.footer-name em { font-style: italic; color: var(--gold); opacity: 0.7; }
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(247,242,235,.25);
+}
+
+/* ============================================================
+   MODAL SYSTEM
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4,8,16,.92);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal {
+  background: var(--bg);
+  border: 1px solid rgba(247,242,235,.1);
+  border-radius: 4px;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-media {
+  background: var(--navy);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  border-right: 1px solid rgba(247,242,235,.07);
+}
+
+.modal-preview-card {
+  background: rgba(247,242,235,.04);
+  border: 1px solid rgba(247,242,235,.08);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.modal-preview-title {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.modal-metric-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.modal-metric {
+  background: rgba(247,242,235,.03);
+  border: 1px solid rgba(247,242,235,.06);
+  border-radius: 2px;
+  padding: 1rem;
+  text-align: center;
+}
+.modal-metric-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.modal-metric-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247,242,235,.35);
+}
+.modal-code {
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(247,242,235,.06);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1.7;
+  color: rgba(247,242,235,.6);
+  overflow-x: auto;
+  white-space: pre;
+}
+.code-kw { color: #6B82F5; }
+.code-fn { color: #19A05E; }
+.code-str { color: #FFC85A; }
+.code-num { color: #F472B6; }
+.code-cm { color: rgba(247,242,235,.3); font-style: italic; }
+
+.modal-info {
+  padding: 2.5rem;
+  overflow-y: auto;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--cream);
+  color: var(--text-dark);
+}
+.modal-close {
+  position: absolute;
+  top: 1.2rem; right: 1.5rem;
+  background: none; border: none;
+  color: rgba(247,242,235,.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: color var(--transition);
+  line-height: 1;
+}
+.modal-close:hover { color: var(--cream); }
+.modal-wrapper { position: relative; }
+
+.modal-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.modal-org {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-light);
+  text-transform: uppercase;
+}
+.modal-desc {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--muted);
+  border-top: 1px solid rgba(44,36,22,.1);
+  padding-top: 1.2rem;
+}
+.modal-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  margin-bottom: 0.8rem;
+}
+.modal-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.modal-bullets li {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+.modal-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  font-size: 0.7rem;
+}
+.modal-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.modal-stack-item {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(44,36,22,.12);
+  border-radius: 2px;
+  color: var(--muted-light);
+}
+.modal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--text-dark);
+  color: var(--cream);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  margin-top: auto;
+}
+.modal-cta:hover {
+  background: var(--muted);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-up:nth-child(4) { animation-delay: 0.4s; }
+.fade-up:nth-child(5) { animation-delay: 0.5s; }
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   DIVIDER DECORATION
+   ============================================================ */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  opacity: 0.4;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+.section-divider-mark {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Fulbright clean blue-white theme override */
+#fulbright .fulbright-heading,
+#fulbright .fulbright-heading em,
+#fulbright .fulbright-pstat-num,
+#fulbright .fulbright-kpi-num {
+  color: #ffffff !important;
+}
+
+#fulbright .fulbright-desc,
+#fulbright .fulbright-kpi-label,
+#fulbright .fulbright-pstat-label {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+#fulbright .fulbright-personal,
+#fulbright .fulbright-kpi {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+#fulbright .country-chip {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+}
+
+
+/* Fulbright final cleanup */
+#fulbright .fulbright-header-row {
+  display: block !important;
+  margin-bottom: 1.2rem !important;
+}
+
+#fulbright .fulbright-badge {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  padding: 0.75rem 1rem !important;
+}
+
+#fulbright .fulbright-badge-text {
+  color: rgba(255,255,255,0.92) !important;
+}
+
+#fulbright .fulbright-network-label,
+#fulbright .country-chip,
+#fulbright .fulbright-personal-label {
+  color: rgba(255,255,255,0.78) !important;
+}
+
+#fulbright * {
+  box-shadow: none !important;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav>
+  <div class="nav-logo">M<em>K</em></div>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#fulbright">Fulbright</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">Fulbright Scholar · Simon Business School</div>
+    <h1 class="hero-name fade-up">Maryame<br><em>Kouram</em></h1>
+    <p class="hero-title fade-up">Data Analyst & AI Practitioner</p>
+    <p class="hero-desc fade-up">
+      Fulbright grantee, currently pursuing an MSBA (STEM) at Simon Business School, University of Rochester — working at the intersection of analytics, data-driven decision making, and human-centered AI.
+    </p>
+    <div class="hero-tags fade-up">
+      <span class="tag">Predictive Modeling</span>
+      <span class="tag">Prescriptive Analytics</span>
+      <span class="tag">Causal Inference</span>
+      <span class="tag">Decision Modeling</span>
+      <span class="tag">Python</span>
+      <span class="tag">GenAI</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">SQL</span>
+      <span class="tag">GLMs</span>
+    </div>
+    <div class="hero-cta fade-up">
+      <a href="#work" class="btn-primary">View Projects ↓</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <img src="https://lh3.googleusercontent.com/d/1e4xW5F5DscLE85pMqDmKb0zk9jKWonaQ"
+           alt="Maryame Kouram"
+           style="width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:inherit;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      />
+      <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1rem;">
+        <div style="font-size:2.5rem;">🖼</div>
+        <div class="photo-placeholder-text">Photo loading...</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">12+</span>
+        <span class="hero-stat-label">Projects</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">5</span>
+        <span class="hero-stat-label">Languages</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3+</span>
+        <span class="hero-stat-label">Years Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STORY
+     ============================================================ -->
+<section id="story">
+  <div class="story-grid">
+    <div class="story-text reveal">
+      <div class="chapter-label story">01 — Story</div>
+      <h2 class="section-title">From the Atlantic<br>coast of <em>Morocco</em></h2>
+      <div class="story-body">
+        <p>
+          I grew up in Safi, one of Morocco's oldest cities — a port town on the Atlantic coast shaped by maritime life and ceramic craft. For centuries, its artisans have transformed local earth into some of the most recognizable ceramics in the world, a tradition passed down through generations and still very much alive today. Growing up surrounded by that taught me something early: precision and beauty are not opposites. Making something rigorous and making something meaningful are, in the end, the same act.
+        </p>
+        <p>
+          From childhood I moved between mathematics and art — drawing, making music, finding patterns in things that seemed unrelated. That curiosity never left me, and it is what eventually drew me to data analytics: the belief that behind every dataset there is a story waiting to be made legible.
+        </p>
+        <div class="story-pull-quote">
+          <p>"I believe data, like art, tells a story — and the analyst's job is to make that story legible to the people who need it most."</p>
+        </div>
+        <p>
+          After placing 87th out of 2,485 candidates in Morocco's national preparatory classes, I studied industrial management engineering at UM6P EMINES. Then came three years at OCP Group — the world's largest phosphate exporter — where I built production analytics systems that ran in the real world, under real constraints.
+        </p>
+        <p>
+          In 2025, I was selected as a Fulbright U.S. Study Grantee — one of just 7 Moroccans chosen that year — to pursue my MSBA (STEM) at Simon Business School, University of Rochester. It felt like the natural next step: bringing everything I had built in Morocco into conversation with the frontier of the field.
+        </p>
+      </div>
+
+      <div class="languages-row">
+        <div class="lang-badge"><span class="lang-name">Arabic</span><span class="lang-level">Native (MSA + Darija)</span></div>
+        <div class="lang-badge"><span class="lang-name">French</span><span class="lang-level">C2 Fluent</span></div>
+        <div class="lang-badge"><span class="lang-name">English</span><span class="lang-level">C2 · TOEFL 112/120</span></div>
+        <div class="lang-badge"><span class="lang-name">中文</span><span class="lang-level">Beginner · 2 yrs study</span></div>
+        <div class="lang-badge"><span class="lang-name">Español</span><span class="lang-level">Beginner · learning</span></div>
+      </div>
+    </div>
+
+    <div class="story-photo-side reveal">
+      <div class="story-photo-frame" style="background:none;padding:0;">
+        <img src="https://lh3.googleusercontent.com/d/1vPmD2VAaylNLeFX8IXfPqU_0CAs0K25S" 
+             alt="Maryame Kouram" 
+             style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        />
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1rem;">
+          <div style="font-size:2.5rem;">🖼</div>
+          <div class="story-photo-placeholder">Photo loading...</div>
+        </div>
+      </div>
+      <div class="story-facts">
+        <div class="story-fact">
+          <div class="story-fact-label">Origin</div>
+          <div class="story-fact-value">Safi, Morocco 🇲🇦</div>
+        </div>
+        <div class="story-fact">
+          <div class="story-fact-label">National Rank</div>
+          <div class="story-fact-value">87th / 2,485</div>
+        </div>
+        <div class="story-fact">
+          <div class="story-fact-label">Current Base</div>
+          <div class="story-fact-value">Rochester, NY 🇺🇸</div>
+        </div>
+        <div class="story-fact">
+          <div class="story-fact-label">Thesis Grade</div>
+          <div class="story-fact-value">18.5/20 · Jury Felicitations</div>
+        </div>
+        <div class="story-fact" style="grid-column: 1 / -1;">
+          <div class="story-fact-label">Creative Pursuits</div>
+          <div class="story-fact-value">Guitar · Drums · Vocals · Visual Arts · Drawing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FULBRIGHT
+     ============================================================ -->
+<section id="fulbright">
+  <div class="fulbright-inner">
+    <div class="fulbright-top">
+      <div class="reveal">
+        <div class="fulbright-header-row">
+<div class="fulbright-badge">
+            
+            <span class="fulbright-badge-text">U.S. Study Grantee · 2025 Cohort</span>
+          </div>
+        </div>
+        <h2 class="fulbright-heading">Member of the<br><em>Fulbright</em> International<br>Network</h2>
+        <p class="fulbright-desc">
+          The Fulbright Program is among the most prestigious academic exchange programs in the world — established by the U.S. Congress in 1946 and jointly funded by the governments of Morocco and the United States. Selection is merit-based, rigorous, and highly competitive.
+        </p>
+        <div class="fulbright-personal">
+          <div class="fulbright-personal-label">My Selection — Morocco 2025</div>
+          <div class="fulbright-personal-stats">
+            <div>
+              <span class="fulbright-pstat-num">1 of 7</span>
+              <div class="fulbright-pstat-label">Selected nationally in Morocco</div>
+            </div>
+            <div>
+              <span class="fulbright-pstat-num">STEM</span>
+              <div class="fulbright-pstat-label">MSBA · Simon Business School</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fulbright-kpis reveal">
+        <div class="fulbright-kpi">
+          <div class="fulbright-kpi-num">62</div>
+          <div class="fulbright-kpi-label">Nobel Prize recipients among Fulbright alumni</div>
+        </div>
+        <div class="fulbright-kpi">
+          <div class="fulbright-kpi-num">89</div>
+          <div class="fulbright-kpi-label">Pulitzer Prize winners in the Fulbright network</div>
+        </div>
+        <div class="fulbright-kpi">
+          <div class="fulbright-kpi-num">41</div>
+          <div class="fulbright-kpi-label">Current or former heads of government as alumni</div>
+        </div>
+        <div class="fulbright-kpi">
+          <div class="fulbright-kpi-num">160+</div>
+          <div class="fulbright-kpi-label">Countries in the global Fulbright network</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fulbright-network reveal">
+      <span class="fulbright-network-label">International Fulbright Network</span>
+      <div class="fulbright-network-countries">
+        <span class="country-chip">Morocco 🇲🇦</span>
+        <span class="country-chip">United States 🇺🇸</span>
+        <span class="country-chip">France 🇫🇷</span>
+        <span class="country-chip">Germany 🇩🇪</span>
+        <span class="country-chip">Japan 🇯🇵</span>
+        <span class="country-chip">Brazil 🇧🇷</span>
+        <span class="country-chip">India 🇮🇳</span>
+        <span class="country-chip">South Korea 🇰🇷</span>
+        <span class="country-chip">Australia 🇦🇺</span>
+        <span class="country-chip">UK 🇬🇧</span>
+        <span class="country-chip">+ 150 more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     JOURNEY (Education + Experience)
+     ============================================================ -->
+<section id="journey">
+  <div class="journey-inner">
+    <div class="section-header reveal">
+      <div class="chapter-label journey">02 — Journey</div>
+      <h2 class="section-title" style="color:var(--text-dark)">Education &amp; <em style="color:var(--journey)">Experience</em></h2>
+    </div>
+
+    <!-- Education -->
+    <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--muted-light);margin-bottom:2rem;" class="reveal">Education</h3>
+    <div class="edu-cards">
+      <div class="edu-card reveal">
+        <div class="edu-card-header">
+          <div class="edu-institution">Simon Business School, University of Rochester</div>
+          <div class="edu-period">Aug 2025 – Dec 2026</div>
+        </div>
+        <div class="edu-degree">MS in Business Analytics (STEM) · Expected December 2026</div>
+        <div class="edu-highlights">
+          <span class="edu-highlight">Fulbright Grantee</span>
+          <span class="edu-highlight">Rochester, NY</span>
+          <span class="edu-highlight">Visual Analytics</span>
+          <span class="edu-highlight">Human-Centered AI</span>
+        </div>
+        <div class="edu-topics">
+          <div class="edu-topics-label">Key Courses</div>
+          <div class="edu-topics-list">Predictive & Causal Analytics · Prescriptive Analytics · GenAI Applications · People Analytics · Data-Driven Decision Making · Data Warehousing & Management · Statistics</div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-card-header">
+          <div class="edu-institution">IMD Lausanne & Africa Business School (OCP "Beyond")</div>
+          <div class="edu-period">Nov 2022 – Nov 2024</div>
+        </div>
+        <div class="edu-degree">Executive MBA · OCP "Beyond" Cohort</div>
+        <div class="edu-highlights">
+          <span class="edu-highlight">Lausanne, Switzerland</span>
+          <span class="edu-highlight">OCP Sponsored</span>
+        </div>
+        <div class="edu-topics">
+          <div class="edu-topics-label">Key Areas</div>
+          <div class="edu-topics-list">Strategic Leadership · Financial Engineering & Operations Research · Innovation Management · Business Strategy · Executive Communication · Global Value Chains</div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-card-header">
+          <div class="edu-institution">UM6P EMINES — School of Industrial Management</div>
+          <div class="edu-period">2019 – 2022</div>
+        </div>
+        <div class="edu-degree">MEng Industrial Management · Minor in Supply Chain</div>
+        <div class="edu-highlights">
+          <span class="edu-highlight">Benguerir, Morocco</span>
+          <span class="edu-highlight">Thesis: 18.5/20</span>
+          <span class="edu-highlight">Jury Felicitations</span>
+        </div>
+        <div class="edu-topics">
+          <div class="edu-topics-label">Key Courses (MINES ParisTech Partnership)</div>
+          <div class="edu-topics-list">Operations Research · Statistics & Econometrics · Cryptography · Supply Chain Management · Biomedical Engineering · Decision Support Systems · Industrial Simulation · Lean Management · VBA & Decision Tools · Data Science & Industrial Processes · Project Management · Financial Engineering</div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-card-header">
+          <div class="edu-institution">Prince Moulay Abdallah Preparatory Classes</div>
+          <div class="edu-period">2017 – 2019</div>
+        </div>
+        <div class="edu-degree">Math & Physics Preparatory Classes (CPGE)</div>
+        <div class="edu-highlights">
+          <span class="edu-highlight">Safi, Morocco</span>
+          <span class="edu-highlight">Rank 87 / 2,485 nationally</span>
+          <span class="edu-highlight">Top 4%</span>
+        </div>
+        <div class="edu-topics">
+          <div class="edu-topics-label">Key Areas</div>
+          <div class="edu-topics-list">Advanced Mathematics · Classical Mechanics · Thermodynamics · Electromagnetism · Analytical Geometry · Differential Equations · Probability & Statistics</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--muted-light);margin:4rem 0 2rem;" class="reveal">Professional Experience</h3>
+    <div class="exp-cards">
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Consultant — Simon Vision Consulting</div>
+          <div class="exp-period">Sep – Dec 2025</div>
+        </div>
+        <div class="exp-company">Simon Business School · Rochester, NY</div>
+        <ul class="exp-bullets">
+          <li>Redesigned cloud-based SQL database architecture for client operations</li>
+          <li>Automated data validation workflows via Make.com APIs, reducing manual processing</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Project Control Officer — SP2M</div>
+          <div class="exp-period">Jul 2024 – Aug 2025</div>
+        </div>
+        <div class="exp-company">OCP Group · Casablanca, Morocco</div>
+        <ul class="exp-bullets">
+          <li>Built automated KPI dashboards (SAP, Power BI, Excel) monitoring a $13B capital portfolio</li>
+          <li>Cut reporting turnaround by 40% through pipeline automation</li>
+          <li>Standardized SAP-VIM validation workflows for 400+ invoices per cycle</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Associate Consultant</div>
+          <div class="exp-period">Nov 2022 – Jun 2024</div>
+        </div>
+        <div class="exp-company">OCP Group · Jorf Lasfar, Morocco</div>
+        <ul class="exp-bullets">
+          <li>Applied value stream mapping and Python clustering to reduce changeover time by 28–30%</li>
+          <li>Mined 15+ country trade datasets to decrease supply chain lead times by 35%</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Supply Chain Analyst</div>
+          <div class="exp-period">Apr – Oct 2022</div>
+        </div>
+        <div class="exp-company">OCP Group · Safi, Morocco</div>
+        <ul class="exp-bullets">
+          <li>Built SQL pipeline feeding 20+ live KPIs across Power BI and VBA dashboards</li>
+          <li>Developed AnyLogic discrete-event simulation model for truck scheduling optimization</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Research Intern</div>
+          <div class="exp-period">Jun – Sep 2021</div>
+        </div>
+        <div class="exp-company">OCP Maintenance Solutions · Safi, Morocco</div>
+        <ul class="exp-bullets">
+          <li>Conducted competitive benchmarking study of industrial maintenance practices and laser shaft alignment technologies</li>
+          <li>Reviewed algorithmic approaches to laser shaft alignment; co-developed prototype of a custom alignment tool</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div class="exp-role">Junior Consultant</div>
+          <div class="exp-period">Oct 2020 – Jun 2022</div>
+        </div>
+        <div class="exp-company">EMINES Junior Entreprise · Benguerir, Morocco</div>
+        <ul class="exp-bullets">
+          <li>Delivered digital marketing and market research mandates for UM6P Executive Education clients</li>
+          <li>Produced competitive analyses and client-facing reports as part of the school's student consulting body</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Resume Download Placeholder -->
+    <div class="resume-cta reveal">
+      <div class="resume-cta-left">
+        <div class="resume-cta-icon">📄</div>
+        <div>
+          <div class="resume-cta-title">Curriculum Vitae</div>
+          <div class="resume-cta-sub">Full résumé with all experience, education, and certifications</div>
+        </div>
+      </div>
+      <!-- REPLACE href="#" with your actual CV link (Google Drive, Notion, PDF, etc.) -->
+      <a href="https://drive.google.com/file/d/1RcxxjAszRx9FOcbCG03rYsYWl6W8FsN3/view" class="btn-primary" target="_blank">Download CV →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WORK / PROJECTS
+     ============================================================ -->
+<section id="work">
+  <div class="work-inner">
+    <div class="section-header reveal">
+      <div class="chapter-label work">03 — Work</div>
+      <h2 class="section-title">Selected <em>Projects</em></h2>
+    </div>
+    <div class="projects-grid">
+
+      <!-- 1. Northbridge GenAI -->
+      <div class="project-card reveal" onclick="openModal('northbridge')">
+        <div class="project-card-top">
+          <span class="project-type type-genai">GenAI · LLM</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Northbridge GenAI Fundraising Assistant</h3>
+        <p class="project-subtitle">AI-powered fundraising analytics tool for a real nonprofit client</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">OpenAI API</span>
+          <span class="project-tag">Streamlit</span>
+          <span class="project-tag">LangChain</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">29.25%</span>
+          <span class="project-metric-label">Revenue growth surfaced ($91K→$118K)</span>
+        </div>
+      </div>
+
+      <!-- 2. Skyline -->
+      <div class="project-card reveal" onclick="openModal('skyline')">
+        <div class="project-card-top">
+          <span class="project-type type-analytics">Prescriptive Analytics</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Skyline Capital — Real Estate Analytics</h3>
+        <p class="project-subtitle">Monte Carlo simulation for optimal real estate investment mix</p>
+        <div class="project-tags">
+          <span class="project-tag">Monte Carlo</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Risk Modeling</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">$905K</span>
+          <span class="project-metric-label">Expected annual profit · P(loss)=0%</span>
+        </div>
+      </div>
+
+      <!-- 3. Terra Nova -->
+      <div class="project-card reveal" onclick="openModal('terranova')">
+        <div class="project-card-top">
+          <span class="project-type type-analytics">People Analytics</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Terra Nova — Employee Learning Analytics</h3>
+        <p class="project-subtitle">PCA + K-Means segmentation of 200 employee motivation profiles</p>
+        <div class="project-tags">
+          <span class="project-tag">PCA</span>
+          <span class="project-tag">K-Means</span>
+          <span class="project-tag">ATE</span>
+          <span class="project-tag">Python</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">73%</span>
+          <span class="project-metric-label">Variance captured · 4 PCA components</span>
+        </div>
+      </div>
+
+      <!-- 4. Fraud Detection -->
+      <div class="project-card reveal" onclick="openModal('fraud')">
+        <div class="project-card-top">
+          <span class="project-type type-ml">ML · Classification</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Fraud Detection — PaySim Dataset</h3>
+        <p class="project-subtitle">XGBoost & Random Forest on 6.3M synthetic financial transactions</p>
+        <div class="project-tags">
+          <span class="project-tag">XGBoost</span>
+          <span class="project-tag">Random Forest</span>
+          <span class="project-tag">Feature Engineering</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">99.999%</span>
+          <span class="project-metric-label">Accuracy · Random Forest (0 false positives)</span>
+        </div>
+      </div>
+
+      <!-- 5. Insurance GLMs -->
+      <div class="project-card reveal" onclick="openModal('insurance')">
+        <div class="project-card-top">
+          <span class="project-type type-ml">Statistical Modeling</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Insurance Claims — GLM Severity Modeling</h3>
+        <p class="project-subtitle">GLMs + LightGBM to predict average auto insurance claim cost</p>
+        <div class="project-tags">
+          <span class="project-tag">GLM</span>
+          <span class="project-tag">LightGBM</span>
+          <span class="project-tag">Anderson-Darling</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">250K</span>
+          <span class="project-metric-label">Records · Moroccan auto insurance dataset</span>
+        </div>
+      </div>
+
+      <!-- 6. Cryptography -->
+      <div class="project-card reveal" onclick="openModal('crypto')">
+        <div class="project-card-top">
+          <span class="project-type type-math">Cryptography · Math</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Chebyshev Polynomial Key Exchange</h3>
+        <p class="project-subtitle">Diffie-Hellman extension over finite fields using Chebyshev polynomials</p>
+        <div class="project-tags">
+          <span class="project-tag">SAGE</span>
+          <span class="project-tag">Number Theory</span>
+          <span class="project-tag">Python</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">𝔽ₚ²</span>
+          <span class="project-metric-label">Key exchange over finite field · p=227</span>
+        </div>
+      </div>
+
+      <!-- 7. VBA Energy -->
+      <div class="project-card reveal" onclick="openModal('vba')">
+        <div class="project-card-top">
+          <span class="project-type type-vba">VBA · Dashboard</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Spain Energy Decision Dashboard</h3>
+        <p class="project-subtitle">VBA + Python decision tool for energy generation & consumption in Spain</p>
+        <div class="project-tags">
+          <span class="project-tag">VBA</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Excel</span>
+          <span class="project-tag">Linear Regression</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">0.742</span>
+          <span class="project-metric-label">R² · Consumption prediction model</span>
+        </div>
+      </div>
+
+      <!-- 8. Supply Chain POC -->
+      <div class="project-card reveal" onclick="openModal('supplychain')">
+        <div class="project-card-top">
+          <span class="project-type type-fullstack">Full-Stack · Optimization</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">OCP Supply Chain Risk Interface</h3>
+        <p class="project-subtitle">Web POC for OCP's Youssoufia stock risk modelling & Xpress optimization</p>
+        <div class="project-tags">
+          <span class="project-tag">AngularJS</span>
+          <span class="project-tag">NodeJS</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Xpress</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">70%</span>
+          <span class="project-metric-label">Reduction in manual reporting time</span>
+        </div>
+      </div>
+
+      <!-- 9. Biomedical -->
+      <div class="project-card reveal" onclick="openModal('biomedical')">
+        <div class="project-card-top">
+          <span class="project-type type-bio">Biomedical · Simulation</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Forced Expiration — Respiratory Modelling</h3>
+        <p class="project-subtitle">Navier-Stokes + Newton-Raphson simulation of flexible bronchial tubes</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">NumPy</span>
+          <span class="project-tag">Matlab</span>
+          <span class="project-tag">Navier-Stokes</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">3</span>
+          <span class="project-metric-label">Validated flow regimes (1.9 → 91.2 m³/s)</span>
+        </div>
+      </div>
+
+      <!-- 10. OCP AnyLogic -->
+      <div class="project-card reveal" onclick="openModal('ocpanylogic')">
+        <div class="project-card-top">
+          <span class="project-type type-analytics">Supply Chain · Simulation</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">OCP Supply Chain & AnyLogic Simulation</h3>
+        <p class="project-subtitle">Power BI dashboards + AnyLogic DES simulation for OCP Safi operations</p>
+        <div class="project-tags">
+          <span class="project-tag">Power BI</span>
+          <span class="project-tag">AnyLogic</span>
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">DAX</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">20+</span>
+          <span class="project-metric-label">Live KPIs tracked in real-time</span>
+        </div>
+      </div>
+
+      <!-- 11. Marketing Analytics -->
+      <div class="project-card reveal" onclick="openModal('marketing')">
+        <div class="project-card-top">
+          <span class="project-type type-analytics">Marketing Analytics</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Marketing Analytics — UM6P</h3>
+        <p class="project-subtitle">Segmentation, forecasting & social media analytics for UM6P Executive Education</p>
+        <div class="project-tags">
+          <span class="project-tag">Power BI</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Segmentation</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">3</span>
+          <span class="project-metric-label">Platforms analyzed: LinkedIn, Instagram, Web</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS
+     ============================================================ -->
+<section id="skills">
+  <div class="skills-inner">
+    <div class="section-header reveal">
+      <div class="chapter-label skills">04 — Skills</div>
+      <h2 class="section-title" style="color:var(--text-dark)">Technical <em style="color:var(--skills)">Toolkit</em></h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🐍</div>
+        <div class="skill-cat-title">Programming Languages</div>
+        <div class="skill-items">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">R</span>
+          <span class="skill-item">VBA</span>
+          <span class="skill-item">SAGE</span>
+          <span class="skill-item">MATLAB</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">📦</div>
+        <div class="skill-cat-title">Data & ML Libraries</div>
+        <div class="skill-items">
+          <span class="skill-item">NumPy</span>
+          <span class="skill-item">Pandas</span>
+          <span class="skill-item">Scikit-learn</span>
+          <span class="skill-item">SciPy</span>
+          <span class="skill-item">Statsmodels</span>
+          <span class="skill-item">Matplotlib</span>
+          <span class="skill-item">Seaborn</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🤖</div>
+        <div class="skill-cat-title">Machine Learning & Statistics</div>
+        <div class="skill-items">
+          <span class="skill-item">XGBoost</span>
+          <span class="skill-item">Random Forest</span>
+          <span class="skill-item">LightGBM</span>
+          <span class="skill-item">PCA</span>
+          <span class="skill-item">K-Means</span>
+          <span class="skill-item">GLMs</span>
+          <span class="skill-item">ATE / Causal Inference</span>
+          <span class="skill-item">Regression Modeling</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">✨</div>
+        <div class="skill-cat-title">GenAI & LLM Engineering</div>
+        <div class="skill-items">
+          <span class="skill-item">LangChain</span>
+          <span class="skill-item">LangGraph</span>
+          <span class="skill-item">OpenAI API</span>
+          <span class="skill-item">RAG Pipelines</span>
+          <span class="skill-item">Streamlit</span>
+          <span class="skill-item">LLM App Design</span>
+          <span class="skill-item">Tool Dispatch</span>
+          <span class="skill-item">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">📊</div>
+        <div class="skill-cat-title">BI & Visualization</div>
+        <div class="skill-items">
+          <span class="skill-item">Power BI</span>
+          <span class="skill-item">Tableau</span>
+          <span class="skill-item">DAX</span>
+          <span class="skill-item">SAP</span>
+          <span class="skill-item">SAP-VIM</span>
+          <span class="skill-item">Excel (Advanced)</span>
+          <span class="skill-item">Dashboard Design</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🏭</div>
+        <div class="skill-cat-title">Simulation, Optimization & Dev</div>
+        <div class="skill-items">
+          <span class="skill-item">AnyLogic</span>
+          <span class="skill-item">Monte Carlo Simulation</span>
+          <span class="skill-item">Xpress Optimizer</span>
+          <span class="skill-item">Discrete-Event Simulation</span>
+          <span class="skill-item">Linear Optimization</span>
+          <span class="skill-item">AngularJS</span>
+          <span class="skill-item">NodeJS</span>
+          <span class="skill-item">Make.com APIs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs-section reveal">
+      <h3 class="certs-title">Certifications</h3>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-name">Intermediate SQL</div>
+          <div class="cert-issuer">DataCamp · Nov 2025</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">TOEFL iBT 112/120</div>
+          <div class="cert-issuer">ETS · May 2024</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">McKinsey Forward Program</div>
+          <div class="cert-issuer">McKinsey & Co · Apr 2024</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Advanced Models for Decision Making</div>
+          <div class="cert-issuer">University of Minnesota</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Optimization for Decision Making</div>
+          <div class="cert-issuer">University of Minnesota</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Game Theory</div>
+          <div class="cert-issuer">Stanford University · Jun 2021</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Supply Chain Analytics Essentials</div>
+          <div class="cert-issuer">Rutgers University · May 2021</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Introduction to Predictive Modeling</div>
+          <div class="cert-issuer">University of Minnesota</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">AI Camera with OpenVINO Toolkit</div>
+          <div class="cert-issuer">Intel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="chapter-label contact">05 — Contact</div>
+      <h2 class="section-title">Let's <em>connect</em></h2>
+      <p class="contact-desc">
+        Always open to interesting conversations — whether it's a research collaboration, a job opportunity, a project idea, or just a good exchange of ideas. Don't hesitate to reach out.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:maryame.kouram@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">Email</span>
+            <span class="contact-link-value">maryame.kouram@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/maryame-kouram/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-value">linkedin.com/in/maryame-kouram</span>
+          </div>
+        </a>
+        <a href="https://github.com/Kouram" target="_blank" class="contact-link">
+          <div class="contact-link-icon">⌥</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">GitHub</span>
+            <span class="contact-link-value">github.com/Kouram</span>
+          </div>
+        </a>
+        <a href="tel:+15858516973" class="contact-link">
+          <div class="contact-link-icon">📱</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">Phone</span>
+            <span class="contact-link-value">+1 585 851-6973</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-right reveal">
+      <div class="contact-availability">
+        <div class="avail-dot"></div>
+        <span class="avail-text">Available for opportunities</span>
+      </div>
+      <p class="contact-form-note">"The best data stories are the ones that change how people decide."</p>
+      <div class="contact-research">
+        <div class="research-label">Research Interests</div>
+        <div class="research-item">Visual Analytics & Interactive Decision Support</div>
+        <div class="research-item">Human-Centered AI Systems</div>
+        <div class="research-item">Causal Inference & Treatment Effect Modeling</div>
+        <div class="research-item">LLM Applications for Business Intelligence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Maryame <em>Kouram</em></div>
+  <div class="footer-copy">© 2025 · Fulbright Scholar · Simon Business School · Rochester, NY</div>
+</footer>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+<div class="modal-wrapper">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <div class="modal" id="modal-content"></div>
+</div>
+</div>
+
+<script>
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ============================================================
+   MODAL DATA
+   ============================================================ */
+const modals = {
+
+  northbridge: {
+    embedUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vThaVP8Nq-3iaknJs45rwIdq5YM_3zPdnFcd9s5J7OPdtDO-BBKhpODg50nPN45cQ/pubembed?start=false&loop=false&delayms=3000',
+    tag: 'GenAI · LLM Application',
+    tagClass: 'type-genai',
+    title: 'Northbridge GenAI Fundraising Assistant',
+    org: 'GBA 479 · Simon Business School · Sep–Dec 2025',
+    desc: 'Built a production-grade AI assistant for Northbridge Community Alliance — a real nonprofit client — enabling conversational fundraising analytics with guaranteed data accuracy via a two-layer guardrail system.',
+    bullets: [
+      '5 Python tool functions: get_fundraising_snapshot, compare_yoy, cost_effectiveness, goal_pacing, what_if_scenario',
+      'Layer 1 guardrails: in-prompt constraints preventing hallucination; Layer 2: intent classification interceptor',
+      'LLM never invents numbers — all figures pulled from live CSV pipeline',
+      '29.25% YoY revenue growth surfaced: $91,880 → $118,751',
+      'Deployed as live Streamlit demo with full tool dispatch architecture'
+    ],
+    stack: ['Python','OpenAI API','Streamlit','LangChain','CSV Pipeline','Tool Dispatch'],
+    metrics: [['29.25%','YoY Growth Surfaced'],['$118,751','2024 Revenue'],['2','Guardrail Layers'],['5','AI Tools Built']],
+    code: '<span class="code-kw">def</span> <span class="code-fn">compare_yoy</span>(year_a, year_b):\n    <span class="code-cm"># Pulls from verified CSV — never hallucinates</span>\n    delta = revenue[year_b] - revenue[year_a]\n    pct   = (delta / revenue[year_a]) * <span class="code-num">100</span>\n    <span class="code-kw">return</span> {<span class="code-str">"growth_pct"</span>: pct, <span class="code-str">"delta"</span>: delta}',
+    link: 'https://www.loom.com/share/07b94bf92ec24ba08b21e5a3e90ed9db',
+    linkLabel: 'Watch Live Demo ↗'
+  },
+
+  skyline: {
+    embedUrl: 'https://drive.google.com/file/d/1pxFNrQoBAWUqtTgksLK2NWDNYE6I7Hks/preview',
+    tag: 'Prescriptive Analytics · Real Estate',
+    tagClass: 'type-analytics',
+    title: 'Skyline Capital Partners — Investment Analysis',
+    org: 'GBA 468P · Simon Business School · Spring A 2026',
+    desc: 'Monte Carlo simulation across 1,000 scenarios and 31 feasible unit mixes (85 units, ≤80K sq ft) to prescribe the optimal real estate investment strategy for two competing development sites.',
+    bullets: [
+      'Section 1 — Market Selection: evaluated Fairview, New Hope & Springfield across 5 dimensions: rent growth, NOI, equity appreciation, vacancy rate, and cost efficiency',
+      'New Hope recommended: highest median NOI ($1.17M), strongest rent CAGR, lowest OpEx ratio (~50%), highest equity growth (~8%) with manageable downside risk',
+      'Fairview showed greatest downside exposure despite lower volatility; Springfield moderate across the board with no competitive edge',
+      'Section 2 — Unit Mix: 1,000 Monte Carlo scenarios tested across 31 feasible configurations (85 units, ≤80K sq ft)',
+      'Optimal mix: 55 Studios + 30 One-Bedrooms → Expected profit ~$905K/yr, P(loss) = 0%, P5 floor at $351K'
+    ],
+    stack: ['Python','Monte Carlo Simulation','Risk Modeling','NumPy','Matplotlib','Tableau'],
+    metrics: [['$905K','Expected Annual Profit'],['0%','Probability of Loss'],['$1.17M','New Hope NOI Median'],['1,000','Scenarios Simulated']],
+    code: '<span class="code-cm"># Monte Carlo simulation core</span>\n<span class="code-kw">for</span> scenario <span class="code-kw">in</span> range(<span class="code-num">1000</span>):\n    rent    = np.random.normal(mu_rent, sigma_rent)\n    vacancy = np.random.beta(a, b)\n    noi     = (rent * units * (<span class="code-num">1</span>-vacancy)) - opex\n    profits.append(noi)\n\np_loss = np.mean(np.array(profits) < <span class="code-num">0</span>)  <span class="code-cm"># → 0.0</span>',
+    link: 'https://drive.google.com/file/d/1pxFNrQoBAWUqtTgksLK2NWDNYE6I7Hks/view',
+    linkLabel: 'View Presentation →'
+  },
+
+  terranova: {
+    embedUrl: 'https://drive.google.com/file/d/19cguXtt1q496TgvJ84AI0dk9wsIeCvYQ/preview',
+    tag: 'People Analytics · ML',
+    tagClass: 'type-analytics',
+    title: 'Terra Nova Learning Academy — Employee Segmentation',
+    org: 'GBA 424 · Simon Business School · Oct–Dec 2025',
+    desc: 'Applied PCA and K-Means clustering on 200 employee survey responses to identify distinct motivation profiles, then quantified training modality impact using three regression models and an ATE simulation.',
+    bullets: [
+      'PCA on 12 survey items → 4 components capturing 73% of variance: Social Engagement, Workload Constraints, Content Complexity, Job Relevance',
+      'K-Means (k=3) validated by elbow method and silhouette scores',
+      'Cluster 0 — Motivated Skill Builders (45%): ~70% completion rate',
+      'Cluster 1 — Career Focused Low Confidence (36%): largest Live instruction uplift (0.65→0.73)',
+      'Cluster 2 — Independent Self-Directed (19%): highest completion ~82%',
+      'ATE simulation: Live delivery raises completion across all groups; Career Focused benefits most',
+      'In-Person training boosts completion by +19% vs Self-Paced (coef=0.190)'
+    ],
+    stack: ['Python','Scikit-learn','PCA','K-Means','Linear Regression','ATE / Causal Inference','Statsmodels'],
+    metrics: [['73%','Variance Captured (4 PCs)'],['3','Learner Segments'],['45%','Motivated Skill Builders'],['19%','In-Person Completion Boost']],
+    code: '<span class="code-cm"># PCA → 4 components (73% variance)</span>\npca = PCA(n_components=<span class="code-num">4</span>)\nX_pca = pca.fit_transform(survey_scaled)\n\n<span class="code-cm"># K-Means segmentation (k=3)</span>\nkm = KMeans(n_clusters=<span class="code-num">3</span>, random_state=<span class="code-num">42</span>)\ndf[<span class="code-str">\'cluster\'</span>] = km.fit_predict(X_pca)',
+    link: 'https://drive.google.com/file/d/19cguXtt1q496TgvJ84AI0dk9wsIeCvYQ/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  fraud: {
+    embedUrl: 'https://drive.google.com/file/d/1OIeaByjh08a591wfuJhTWfKKsYDkNM73/preview',
+    tag: 'ML · Binary Classification',
+    tagClass: 'type-ml',
+    title: 'Fraud Detection — PaySim Synthetic Dataset',
+    org: 'Analytics Edge · UM6P EMINES',
+    desc: 'End-to-end fraud detection pipeline on 6.36 million synthetic financial transactions. Applied feature engineering, distribution analysis, and four ML models — achieving near-perfect classification with zero false positives on the best model.',
+    bullets: [
+      '6,362,620 rows · 11 columns · 8,213 fraudulent transactions (TRANSFER + CASH_OUT only)',
+      'Key insight: zero-balance destination accounts = fraud indicator (49.55% fraud vs 0.06% valid)',
+      'Feature engineering: errorBalanceOrig, errorBalanceDest, HourOfDay (step % 24)',
+      'Box-Cox transformation applied to correct heavy skewness (amount: 21.93 skew)',
+      'Weightless XGBoost on log-transformed data: 99.9984% accuracy, 13 FN, 0 FP',
+      'Random Forest: 99.999% accuracy, 11 FN, 0 FP — best overall balance'
+    ],
+    stack: ['Python','XGBoost','Random Forest','Scikit-learn','Pandas','NumPy','Matplotlib'],
+    metrics: [['6.36M','Rows Processed'],['99.999%','Best Accuracy'],['0','False Positives (RF)'],['8,213','Fraud Cases Detected']],
+    code: '<span class="code-cm"># Feature engineering</span>\ndf[<span class="code-str">\'errorBalanceOrig\'</span>] = (\n    df.oldbalanceOrg - df.amount - df.newbalanceOrig\n)\ndf[<span class="code-str">\'HourOfDay\'</span>] = df.step % <span class="code-num">24</span>\n\n<span class="code-cm"># Weighted XGBoost for class imbalance</span>\nscale_pos_weight = len(y[y==<span class="code-num">0</span>]) / len(y[y==<span class="code-num">1</span>])',
+    link: 'https://drive.google.com/file/d/1OIeaByjh08a591wfuJhTWfKKsYDkNM73/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  insurance: {
+    embedUrl: 'https://drive.google.com/file/d/1D3KxB-jkMbtEgEpeHQh0Bd2bDtUBwX_m/preview',
+    tag: 'Statistical Modeling · GLM',
+    tagClass: 'type-ml',
+    title: 'Auto Insurance Claim Severity Modeling',
+    org: 'Module Statistique 5FM · UM6P EMINES',
+    desc: 'Modeled the average cost of auto insurance claims (sévérité) using GLMs across Normal, Gamma, and Exponential families, then benchmarked against LightGBM and XGBoost on a 250K-row Moroccan insurance dataset.',
+    bullets: [
+      '250,000 rows · 11 variables · Moroccan auto insurance data',
+      'Target: sévérité = charge_new / nbre_sinistres (average claim cost)',
+      'Data cleaning: 64,462 duplicates removed; outliers >15,000 removed (kept 98.6% of data)',
+      'Best distribution fit: Exponential λ=183.03 (lowest RMSE 1.46e-6)',
+      'Anderson-Darling statistic: A=60,809.69 (normality rejected); D\'Agostino-Pearson K²=202,345.25',
+      'Best GLM: Normal + Identity link (RMSE=978.05); best ML: LightGBM (lowest RMSE overall)',
+      'Top predictor: Fréquence des sinistres (coef=896.02) followed by vehicle type and region'
+    ],
+    stack: ['Python','Statsmodels','GLM','LightGBM','XGBoost','SciPy','Pandas'],
+    metrics: [['250K','Insurance Records'],['98.6%','Data Retention After Cleaning'],['978','Best GLM RMSE'],['5','Distributions Tested']],
+    code: '<span class="code-cm"># GLM — Normal + Identity link (best model)</span>\nglm = sm.GLM(y, X,\n    family=sm.families.Gaussian(\n        link=sm.families.links.identity()\n    )\n).fit()\n\n<span class="code-cm"># Final equation:</span>\n<span class="code-cm"># Sévérité = 896.02×Freq + 37.58×Type</span>\n<span class="code-cm">#           - 23.74×Région + 230.91</span>',
+    link: 'https://drive.google.com/file/d/1D3KxB-jkMbtEgEpeHQh0Bd2bDtUBwX_m/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  crypto: {
+    embedUrl: 'https://drive.google.com/file/d/1DqZkAcItiylR3SxKsT_-fnh6Rko4gwT3/preview',
+    tag: 'Cryptography · Number Theory',
+    tagClass: 'type-math',
+    title: 'Chebyshev Polynomial Key Exchange Protocol',
+    org: 'Module Cryptographie · UM6P EMINES · Supervisor: Pierre Vincent Koseleff',
+    desc: 'Extended the Diffie-Hellman key exchange to finite fields using Chebyshev polynomials, leveraging the semi-group property P_mn(X) = P_m(P_n(X)) as the trapdoor function.',
+    bullets: [
+      'Field: p=211, irreducible polynomial P(x) = x² + 207x + 2, working in ℤ/pℤ[x]/(P)',
+      'Key exchange: Alice → sₐ = Pₐ(g) mod p; Bob → s_b = P_b(g) mod p; shared = P_ab(g) mod p',
+      'Fast exponentiation via matrix diagonalization: A^n = P·D^n·P⁻¹, eigenvalues λ = x ± √(x²-1)',
+      'Live demonstration: p=227, g=79, a=88, b=96 → shared key = 40 (verified matching)',
+      'SAGE implementation; also Newton binomial method for A^n computation',
+      'Security: discrete logarithm hardness; known vulnerability: man-in-the-middle attack'
+    ],
+    stack: ['SAGE','Python','NumPy','Linear Algebra','Number Theory'],
+    metrics: [['𝔽ₚ²','Finite Field','p=211'],['40','Shared Key Demo (p=227)'],['P_mn','Semi-group Property'],['2','Methods Implemented']],
+    code: '<span class="code-cm"># Chebyshev key exchange in SAGE</span>\np, g = <span class="code-num">227</span>, <span class="code-num">79</span>\na, b = <span class="code-num">88</span>, <span class="code-num">96</span>\n\nsa = chebyshev_poly(a, g, p)  <span class="code-cm"># Alice\'s public</span>\nsb = chebyshev_poly(b, g, p)  <span class="code-cm"># Bob\'s public</span>\n\nkey_a = chebyshev_poly(a, sb, p)\nkey_b = chebyshev_poly(b, sa, p)\n<span class="code-cm"># key_a == key_b == 40 ✓</span>',
+    link: 'https://drive.google.com/file/d/1DqZkAcItiylR3SxKsT_-fnh6Rko4gwT3/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  vba: {
+    embedUrl: 'https://drive.google.com/file/d/1Bb9iZFb_dKaLwrTlo8G18gJY8m-sFZ4c/preview',
+    tag: 'VBA · Decision Dashboard',
+    tagClass: 'type-vba',
+    title: 'Spain Energy Decision-Making Dashboard',
+    org: 'Module VBA · UM6P EMINES · May 2021',
+    desc: 'Built a full Excel-based decision support tool for Spain\'s energy sector — combining 4 years of energy generation/consumption/pricing data with meteorological data from 5 cities, plus a Python-trained linear regression for consumption prediction.',
+    bullets: [
+      '4 years of Spain energy data: 29 columns (21 generation types, pricing EUR/MWh, demand forecasts)',
+      'Weather data: 5 cities (Madrid, Barcelona, Séville, Bilbao, Valencia) · 17 columns each',
+      'Python preprocessing: pivot cities, average weather params per hour, linear interpolation for NaNs',
+      'Linear regression model: R²=0.742, RMSE=2,341.36, RMSE/mean=8.1%',
+      'VBA PredictLoad function embedded in Excel UserForm for live consumption prediction',
+      'Dynamic Pivot Table switching via VBA for meteorological parameter views',
+      '10 features: fossil types, solar, hydro, price actual, humidity, wind speed'
+    ],
+    stack: ['VBA','Python','Excel','Linear Regression','Pivot Tables','UserForms'],
+    metrics: [['0.742','R² Prediction Model'],['8.1%','RMSE / Mean Consumption'],['4 yrs','Spain Energy Data'],['5','Cities Modeled']],
+    code: '<span class="code-cm">\' VBA prediction function</span>\n<span class="code-kw">Function</span> <span class="code-fn">PredictLoad</span>(a,b,c,d,e,f,g,h,i,j)\n  PredictLoad = <span class="code-num">14520</span> _\n    + <span class="code-num">0.1399</span>*a + <span class="code-num">0.5814</span>*b _\n    + <span class="code-num">0.232</span>*c  + <span class="code-num">16.84</span>*d _\n    + <span class="code-num">40.69</span>*h  - <span class="code-num">23.48</span>*i _\n    + <span class="code-num">557.63</span>*j\n<span class="code-kw">End Function</span>',
+    link: 'https://drive.google.com/file/d/1Bb9iZFb_dKaLwrTlo8G18gJY8m-sFZ4c/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  supplychain: {
+    embedUrl: 'https://drive.google.com/file/d/1rdCHMEpEIyqI1bWgx2bc6oU5UuQ4Z9I7/preview',
+    tag: 'Full-Stack Web · Optimization',
+    tagClass: 'type-fullstack',
+    title: 'OCP Supply Chain Risk Interface (POC)',
+    org: 'EMINES Capstone · Client: OCP Group, Youssoufia · Supervisor: Selwa El Firdoussi',
+    desc: 'Developed a full-stack web proof-of-concept for OCP\'s doctoral research on stock risk modelling at the Youssoufia site, automating the bridge between user inputs, Xpress optimization, and visual output.',
+    bullets: [
+      'Client: Asma RAKIZ (OCP doctoral researcher in Supply Chain Management)',
+      '3 modules: Input management (CRUD), Optimization trigger, Results visualization',
+      'Flow: User inputs → .dat file generation → Xpress Optimizer → .txt results → Charts + Gantt',
+      'WebSocket connection for real-time optimization feedback',
+      'JSON server (db.json) for persistent input storage; GET/POST/CORS API handling',
+      'Results displayed as tables, line charts, and interactive Gantt diagrams',
+      'Reduced manual reporting time by 70%'
+    ],
+    stack: ['AngularJS','NodeJS','Python','JSON Server','Xpress Optimizer','WebSocket'],
+    metrics: [['70%','Reporting Time Reduction'],['3','Functional Modules'],['1','Live Xpress Integration'],['2','User Roles']],
+    code: '<span class="code-cm">// Angular → NodeJS → Python → Xpress</span>\napp.get(<span class="code-str">\'/optimize\'</span>, (req, res) => {\n  generateDatFile(req.body.inputs)\n  <span class="code-fn">runPython</span>(<span class="code-str">\'xpress_runner.py\'</span>)\n    .then(results => <span class="code-fn">parseResults</span>(results))\n    .then(data => res.json({\n      tables: data.tables,\n      gantt:  data.gantt\n    }))\n})',
+    link: 'https://drive.google.com/file/d/1rdCHMEpEIyqI1bWgx2bc6oU5UuQ4Z9I7/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  biomedical: {
+    embedUrl: 'https://drive.google.com/file/d/1z_CS6HfKY1DiANDPtSca5F69HfwJHUBM/preview',
+    tag: 'Biomedical Simulation · Fluid Dynamics',
+    tagClass: 'type-bio',
+    title: 'Forced Expiration — Respiratory Tube Modelling',
+    org: 'Biomedical Engineering · UM6P EMINES · Supervisor: Marcel Filoche',
+    desc: 'Mathematically modelled forced expiration in the human respiratory system by solving Navier-Stokes equations for flexible tubes using Newton-Raphson discretization, then extended to an asymmetric multi-generation bronchial tree.',
+    bullets: [
+      'Physics: Navier-Stokes for stationary, incompressible, quasi-1D flow; tube law D(p) = Dmax·1/(1+c·e^(-p/p0))',
+      'Method: discretize PDE to get Fi functions → Jacobian matrix J → solve J·X = -Mat(F) → iterate',
+      'Sim 1 (quasi-rigid, C=0): linear pressure drop, flux = 1.90 m³/s confirmed by Poiseuille\'s law',
+      'Sim 2 (flexible tube, ΔP=42,000 Pa): radius varies, flux = 80.40 m³/s; tube tapers at inlet',
+      'Sim 3 (flow limitation, extended ΔP): flux = 91.20 m³/s; flux ∝ ΔP validated',
+      'Scalar equation verification: F(P1=98.06, P2=96.12, Φ=1.9) ≈ 0 ✓',
+      'Extended to asymmetric bronchial tree (2→n generations) with D=f(V) curves; 3D Matlab visualization'
+    ],
+    stack: ['Python','NumPy','Matplotlib','SciPy.integrate','MATLAB','Newton-Raphson','Navier-Stokes'],
+    metrics: [['1.90','m³/s Quasi-Rigid Flux'],['80.40','m³/s Flexible Flux'],['91.20','m³/s Flow Limit Flux'],['n-gen','Bronchial Tree Extended']],
+    code: '<span class="code-cm"># Newton-Raphson on discretized Navier-Stokes</span>\n<span class="code-kw">while</span> norm(F) > precision:\n    J = jacobian(P_vec, flux)  <span class="code-cm"># ∂Fi/∂Pj | ∂Fi/∂Φ</span>\n    X = solve(J, -F)           <span class="code-cm"># J·X = -Mat(F)</span>\n    Y = Y + X                  <span class="code-cm"># refine pressures</span>\n    F = compute_F(Y, tube_law)',
+    link: 'https://drive.google.com/file/d/1z_CS6HfKY1DiANDPtSca5F69HfwJHUBM/view',
+    linkLabel: 'View Full Report →'
+  },
+
+  ocpanylogic: {
+    embedUrl: 'https://drive.google.com/file/d/1Y3fXlEyAJ9wskxgiZNzduUzwcZxpjGIq/preview',
+    tag: 'Supply Chain · Simulation',
+    tagClass: 'type-analytics',
+    title: 'OCP Supply Chain & AnyLogic Simulation',
+    org: 'OCP Group · Safi Site · 2022',
+    desc: 'Built a full supply chain analytics system for OCP Safi — the world\'s largest phosphate exporter — combining a live SQL/Power BI dashboard with an AnyLogic discrete-event simulation and linear optimization model.',
+    bullets: [
+      'SQL pipeline feeding 20+ live KPIs into Power BI DAX dashboards',
+      'AnyLogic DES model simulating phosphate slurry pipeline operations',
+      'Linear optimization for production scheduling and resource allocation',
+      'Identified bottlenecks reducing throughput by 15% during peak loads'
+    ],
+    stack: ['SQL', 'Power BI', 'DAX', 'AnyLogic', 'Python', 'Linear Programming'],
+    metrics: [['20+', 'Live KPIs'], ['15%', 'Bottleneck reduction'], ['DES', 'Simulation model']],
+    code: '<span class="code-kw">SELECT</span> date, site, SUM(tonnage) <span class="code-cm">-- live KPI</span>\n<span class="code-kw">FROM</span> ocp_production\n<span class="code-kw">WHERE</span> site = <span class="code-str">\'Safi\'</span>\n<span class="code-kw">GROUP BY</span> date, site',
+    link: 'https://drive.google.com/file/d/1Y3fXlEyAJ9wskxgiZNzduUzwcZxpjGIq/view',
+    linkLabel: 'View Full Report →',
+    demoLink: 'https://drive.google.com/file/d/1wtc4EasJZfWdWMALysKm_K6nLDKQjMvS/view',
+    demoLabel: 'Watch Demo →'
+  },
+
+  marketing: {
+    tag: 'Marketing Analytics',
+    tagClass: 'type-analytics',
+    title: 'Marketing Analytics — UM6P Executive Education',
+    org: 'EMINES Junior Entreprise · Sep 2021–May 2022',
+    desc: 'Delivered a full marketing analytics engagement for UM6P Executive Education — segmenting audiences, forecasting enrollment, and building social media performance dashboards across LinkedIn, Instagram, and web.',
+    bullets: [
+      'Audience segmentation using clustering on CRM and engagement data',
+      'Enrollment forecasting model with seasonal adjustments',
+      'LinkedIn and Instagram analytics dashboard in Power BI',
+      'Presented strategic recommendations to UM6P marketing leadership'
+    ],
+    stack: ['Python', 'Power BI', 'Excel', 'Segmentation', 'Forecasting'],
+    metrics: [['3', 'Platforms analyzed'], ['2', 'Segmentation models'], ['8mo', 'Engagement']],
+    code: '<span class="code-kw">from</span> sklearn.cluster <span class="code-kw">import</span> KMeans\nmodel = KMeans(n_clusters=<span class="code-num">4</span>)\nsegments = model.fit_predict(crm_features)\n<span class="code-cm"># 4 audience segments identified</span>',
+    link: '#',
+    linkLabel: 'Confidential Project'
+  }
+};
+
+/* ============================================================
+   MODAL OPEN / CLOSE
+   ============================================================ */
+function openModal(id) {
+  const d = modals[id];
+  if (!d) return;
+
+  const metricsHTML = d.metrics.map(([num, lbl]) =>
+    '<div class="modal-metric"><div class="modal-metric-num">' + num + '</div><div class="modal-metric-lbl">' + lbl + '</div></div>'
+  ).join('');
+
+  const mediaPanel = d.embedUrl
+    ? '<div class="modal-media" style="padding:0;overflow:hidden;"><iframe src="' + d.embedUrl + '" style="width:100%;height:100%;border:none;display:block;" allowfullscreen></iframe></div>'
+    : '<div class="modal-media"><div class="modal-preview-card"><div class="modal-preview-title">Key Metrics</div><div class="modal-metric-row">' + metricsHTML + '</div></div><div class="modal-preview-card"><div class="modal-preview-title">Code Sample</div><div class="modal-code">' + (d.code || '') + '</div></div></div>';
+
+  const infoPanel = '<div class="modal-info"><div><span class="modal-tag ' + d.tagClass + '">' + d.tag + '</span><h2 class="modal-title">' + d.title + '</h2><div class="modal-org">' + d.org + '</div></div><p class="modal-desc">' + d.desc + '</p><div><div class="modal-section-title">Overview</div><ul class="modal-bullets">' + d.bullets.map(b => '<li>' + b + '</li>').join('') + '</ul></div><div><div class="modal-section-title">Stack</div><div class="modal-stack">' + d.stack.map(s => '<span class="modal-stack-item">' + s + '</span>').join('') + '</div></div><a href="' + d.link + '" target="_blank" class="modal-cta">' + d.linkLabel + '</a>' + (d.demoLink ? '<a href="' + d.demoLink + '" target="_blank" class="modal-cta" style="margin-top:0.75rem;background:transparent;border:1px solid var(--gold);color:var(--gold);">' + d.demoLabel + '</a>' : '') + '</div>';
+
+  document.getElementById('modal-content').innerHTML = mediaPanel + infoPanel;
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
