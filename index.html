@@ -2029,6 +2029,20 @@ footer {
     <div class="exp-cards">
       <div class="exp-card reveal">
         <div class="exp-header">
+          <div class="exp-role">Data Science &amp; AI Intern</div>
+          <div class="exp-period">Jun – Jul 2026</div>
+        </div>
+        <div class="exp-company">KidsOutAndAbout LLC · Rochester, NY · via UR Center of Excellence in Data Science &amp; AI</div>
+        <ul class="exp-bullets">
+          <li>Built and shipped Vera, an AI-assisted client reporting platform unifying six advertising and CRM platforms into a single PostgreSQL database across ~50 regional sites</li>
+          <li>Designed a two-layer entity resolution architecture — deterministic SQL matching with a human-triggered Claude reasoning fallback — cutting cost per complex query ~6× through prompt caching and deterministic pre-narrowing</li>
+          <li>Secured the CRM integration behind a read-only JWT Bearer Flow client with defense-in-depth permissions, verified by a deliberate failed-write test</li>
+          <li>Partnered directly with the CEO and sales team to turn reporting pain points into requirements; delivered branded reports via Streamlit with unattended sync jobs on GitHub Actions</li>
+        </ul>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
           <div class="exp-role">Consultant — Simon Vision Consulting</div>
           <div class="exp-period">Sep – Dec 2025</div>
         </div>
@@ -2111,7 +2125,7 @@ footer {
         </div>
       </div>
       <!-- REPLACE href="#" with your actual CV link (Google Drive, Notion, PDF, etc.) -->
-      <a href="https://drive.google.com/file/d/1RcxxjAszRx9FOcbCG03rYsYWl6W8FsN3/view" class="btn-primary" target="_blank">Download CV →</a>
+      <a href="https://drive.google.com/file/d/1_FDrwL1dEQfWLNcx9GPjcxK9EXybaWZU/view" class="btn-primary" target="_blank">Download CV →</a>
     </div>
   </div>
 </section>
@@ -2127,7 +2141,27 @@ footer {
     </div>
     <div class="projects-grid">
 
-      <!-- 1. Northbridge GenAI -->
+      <!-- 1. Vera — KidsOutAndAbout -->
+      <div class="project-card reveal" onclick="openModal('vera')">
+        <div class="project-card-top">
+          <span class="project-type type-genai">LLM Systems · Data Engineering</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Vera — AI-Assisted Client Reporting</h3>
+        <p class="project-subtitle">Two-layer matching engine reconciling a CRM against five ad platforms with no shared key</p>
+        <div class="project-tags">
+          <span class="project-tag">Claude API</span>
+          <span class="project-tag">PostgreSQL</span>
+          <span class="project-tag">Streamlit</span>
+          <span class="project-tag">SQLAlchemy</span>
+        </div>
+        <div class="project-metric">
+          <span class="project-metric-num">6×</span>
+          <span class="project-metric-label">Cheaper per query ($0.41 → $0.07)</span>
+        </div>
+      </div>
+
+      <!-- 2. Northbridge GenAI -->
       <div class="project-card reveal" onclick="openModal('northbridge')">
         <div class="project-card-top">
           <span class="project-type type-genai">GenAI · LLM</span>
@@ -2514,11 +2548,11 @@ footer {
             <span class="contact-link-value">linkedin.com/in/maryame-kouram</span>
           </div>
         </a>
-        <a href="https://github.com/Kouram" target="_blank" class="contact-link">
+        <a href="https://github.com/maryam24-k" target="_blank" class="contact-link">
           <div class="contact-link-icon">⌥</div>
           <div class="contact-link-text">
             <span class="contact-link-label">GitHub</span>
-            <span class="contact-link-value">github.com/Kouram</span>
+            <span class="contact-link-value">github.com/maryam24-k</span>
           </div>
         </a>
         <a href="tel:+15858516973" class="contact-link">
@@ -2579,6 +2613,31 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
    MODAL DATA
    ============================================================ */
 const modals = {
+
+  vera: {
+    embedUrl: 'https://www.youtube.com/embed/uXLNeuI9TBU',
+    tag: 'LLM Systems · Data Engineering',
+    tagClass: 'type-genai',
+    title: 'Vera — AI-Assisted Client Reporting Platform',
+    org: 'KidsOutAndAbout LLC · CoE-DSAI Internship · Jun–Jul 2026',
+    desc: 'A production reporting system for a regional media company selling advertising across ~50 city markets. Client performance data lives in five external platforms with no shared identifier to the CRM — Vera reconciles them automatically and generates branded client reports, replacing a manual multi-day process.',
+    bullets: [
+      'Two-layer entity resolution: deterministic SQL matching runs first and handles the clear majority of line items at zero token cost; a Claude-powered reasoning fallback is human-triggered only, never automatic',
+      'Deterministic pre-narrowing (date window + name pattern) before any model call — ~20x token reduction per matching decision, and the model can only select from IDs that exist in the candidate set',
+      'Prompt caching across the agentic loop cut a complex chat query from ~$0.41 to ~$0.07 by caching the system prompt and all eight tool definitions as a single block',
+      'Resolution ledger caches every confirmed match, so expensive reasoning is amortized rather than repeated on each report run',
+      'Six integrations (CRM, ad server, two newsletter platforms, video, web analytics) across five auth models — all read-only, idempotent, and resumable, orchestrated on scheduled GitHub Actions',
+      'Performance: batched bulk upsert took a daily aggregation from ~10 min to ~2 sec; covering indexes took a per-client analytics query from ~95 sec to ~1 sec',
+      'Public repo runs on a synthetic 10-client dataset engineered to exercise every branch of the matching engine — no client data, no credentials'
+    ],
+    stack: ['Python','Claude API','PostgreSQL','Supabase','Streamlit','SQLAlchemy','python-docx','GitHub Actions','JWT / OAuth 2.0','REST APIs'],
+    metrics: [['6×','Cheaper Per Query'],['5','Platforms Reconciled'],['~20×','Token Reduction'],['0','Shared Join Keys']],
+    code: '<span class="code-cm"># Layer 1 runs first — deterministic, no API call</span>\nmatch = <span class="code-fn">resolve_deterministic</span>(line_item)\n\n<span class="code-kw">if</span> match <span class="code-kw">is</span> <span class="code-kw">None</span>:\n    <span class="code-cm"># Layer 2 is human-triggered, never automatic.</span>\n    <span class="code-cm"># Candidates narrowed by SQL before the model sees them.</span>\n    candidates = <span class="code-fn">narrow_by_date_and_name</span>(line_item)\n    match      = <span class="code-fn">adjudicate_with_claude</span>(candidates)\n\n<span class="code-fn">ledger.write</span>(match)  <span class="code-cm"># paid once, never re-reasoned</span>',
+    link: 'https://www.youtube.com/watch?v=uXLNeuI9TBU',
+    linkLabel: 'Watch Demo Walkthrough ↗',
+    demoLink: 'https://github.com/maryam24-k/Vera-AI-assisted-client-reporting-system',
+    demoLabel: 'View Code on GitHub ↗'
+  },
 
   northbridge: {
     embedUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vThaVP8Nq-3iaknJs45rwIdq5YM_3zPdnFcd9s5J7OPdtDO-BBKhpODg50nPN45cQ/pubembed?start=false&loop=false&delayms=3000',
